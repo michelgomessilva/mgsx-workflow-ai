@@ -1,0 +1,30 @@
+# MGSX Workflow-AI — base pre-commit gates.
+# Replace the <PLACEHOLDERS> with the detected stack's real commands (the setup
+# command does this for you). Order: format -> analyze/build -> unit tests.
+default_stages: [pre-commit]
+exclude: '(^bin/|/bin/|^obj/|/obj/|node_modules/|dist/|build/)'
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+        args: ['--maxkb=5000']
+  - repo: local
+    hooks:
+      - id: format
+        name: Format Code
+        entry: <FORMAT_CHECK_COMMAND>
+        language: system
+        pass_filenames: false
+      - id: build
+        name: Build
+        entry: <BUILD_COMMAND_WARNINGS_AS_ERRORS>
+        language: system
+        pass_filenames: false
+      - id: test-unit
+        name: Unit Tests
+        entry: <UNIT_TEST_COMMAND>
+        language: system
+        pass_filenames: false

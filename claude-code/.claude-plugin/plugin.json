@@ -1,0 +1,14 @@
+{
+  "name": "mgsx-workflow-ai",
+  "displayName": "MGSX Workflow-AI",
+  "version": "0.1.0",
+  "description": "Bootstrap and run a Spec-Driven Development workflow (PRD → PROJECT → Feature → Slice → RDPI) in any Claude Code project. Ships the /mgsx-workflow-ai:setup orchestrator plus reusable RDPI skills and review/audit agents.",
+  "author": {
+    "name": "MGSX",
+    "email": "michelsilva@mercanproperties.pt"
+  },
+  "homepage": "https://github.com/mgsx/mgsx-workflow-ai",
+  "repository": "https://github.com/mgsx/mgsx-workflow-ai",
+  "license": "MIT",
+  "keywords": ["spec-driven-development", "prd", "project", "rdpi", "vertical-slices", "workflow", "bootstrap"]
+}

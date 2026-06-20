@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(<TEST_COMMAND>:*)",
+      "Bash(<BUILD_COMMAND>:*)",
+      "Bash(<FORMAT_OR_LINT_COMMAND>:*)",
+      "Bash(git add:*)", "Bash(git commit:*)", "Bash(git checkout *)", "Bash(git switch *)", "Bash(git stash:*)", "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)"
+    ]
+  }
+}
