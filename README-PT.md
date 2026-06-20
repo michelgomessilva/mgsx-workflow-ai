@@ -5,7 +5,7 @@
   <h3><em>Transforme qualquer repositório — novo ou existente — num harness de Spec-Driven Development com um comando.</em></h3>
 
   <p>
-    <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/releases/latest"><img src="https://img.shields.io/github/v/release/michelgomessilva/mgsx-workflow-ai?sort=semver&color=6366F1" alt="Última release"/></a>
+    <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/tags"><img src="https://img.shields.io/github/v/tag/michelgomessilva/mgsx-workflow-ai?sort=semver&color=6366F1&label=version" alt="Última versão"/></a>
     <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/blob/main/LICENSE"><img src="https://img.shields.io/github/license/michelgomessilva/mgsx-workflow-ai?color=22D3EE" alt="Licença"/></a>
     <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/stargazers"><img src="https://img.shields.io/github/stars/michelgomessilva/mgsx-workflow-ai?style=social" alt="Stars"/></a>
     <img src="https://img.shields.io/badge/Claude_Code-plugin-A855F7" alt="Plugin do Claude Code"/>
