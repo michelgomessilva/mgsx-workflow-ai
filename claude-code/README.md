@@ -5,10 +5,12 @@ The Claude Code plugin for the [MGSX Workflow-AI](../README.md). Ships one orche
 ## Install
 
 ```text
-# from the repo root (this folder's parent is the marketplace)
-/plugin marketplace add mgsx/mgsx-workflow-ai
+# the parent repo is the marketplace
+/plugin marketplace add michelgomessilva/mgsx-workflow-ai
 /plugin install mgsx-workflow-ai@mgsx-workflow-ai
 ```
+
+> Full project overview: [main README](../README.md) · [README (Português)](../README-PT.md).
 
 ## Usage
 

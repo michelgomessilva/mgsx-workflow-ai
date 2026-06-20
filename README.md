@@ -1,62 +1,119 @@
-# MGSX Workflow-AI
+<div align="center">
+  <img src="./assets/banner.svg" alt="MGSX Workflow-AI" width="100%"/>
 
-> Transforme **qualquer** projeto — novo ou existente — num harness de engenharia assistida por IA com **um comando**. Camada de produto (PRD → PROJECT), Spec-Driven Development com fatias verticais, ciclo RDPI, skills e agentes de revisão/auditoria — distribuído como **plugin do Claude Code**.
->
-> 🇬🇧 English below ↓
+  <h1>MGSX Workflow-AI</h1>
+  <h3><em>Turn any repository — new or existing — into a Spec-Driven Development harness with one command.</em></h3>
 
-Este repositório é um **monorepo por AI**: cada ferramenta de IA tem sua própria subpasta de plugin. Hoje há um plugin:
+  <p>
+    <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/releases/latest"><img src="https://img.shields.io/github/v/release/michelgomessilva/mgsx-workflow-ai?sort=semver&color=6366F1" alt="Latest release"/></a>
+    <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/blob/main/LICENSE"><img src="https://img.shields.io/github/license/michelgomessilva/mgsx-workflow-ai?color=22D3EE" alt="License"/></a>
+    <a href="https://github.com/michelgomessilva/mgsx-workflow-ai/stargazers"><img src="https://img.shields.io/github/stars/michelgomessilva/mgsx-workflow-ai?style=social" alt="Stars"/></a>
+    <img src="https://img.shields.io/badge/Claude_Code-plugin-A855F7" alt="Claude Code plugin"/>
+  </p>
 
-| AI | Pasta | Plugin |
-|---|---|---|
-| Claude Code | [`claude-code/`](claude-code/) | `mgsx-workflow-ai` |
-
-*(Futuras AIs entram como novas subpastas — ex.: `cursor/`, `codex/` — sem alterar as existentes.)*
-
-## Instalação (Claude Code)
-
-```text
-# uma vez por máquina
-/plugin marketplace add mgsx/mgsx-workflow-ai      # ou o caminho local do repo
-/plugin install mgsx-workflow-ai@mgsx-workflow-ai
-
-# em qualquer projeto (pasta vazia ou repo existente)
-cd meu-projeto && claude
-/mgsx-workflow-ai:setup
-```
-
-O comando `/mgsx-workflow-ai:setup` roda **por fases com checkpoints**: detecta a stack, **copia** os assets prontos (skills, agentes, templates, docs, biblioteca de prompts) e **gera** só o específico da stack (`CLAUDE.md`, `settings`, contexto técnico). Veja [`claude-code/README.md`](claude-code/README.md) para detalhes.
-
-## O que você ganha
-
-- **Camada de produto** — `/new-prd` (documento de negócio) e `/new-project` (quebra um épico em sprints com critérios de aceite, incluindo *sad paths*).
-- **Spec-Driven Development com fatias verticais** — feature mãe `F00XX` → fatias `F00XX.N` → ciclo **RDPI** (Research → Design → Plan → Implement) → 1 PR ≤ ~400 linhas.
-- **9 skills** RDPI e **8 agentes** (implementer, code-reviewer, auditores de segurança read-only, testes e docs).
-- **Híbrido**: o que é reutilizável vem pronto; o que é específico da stack é gerado.
-
-## Filosofia
-
-Nada de implementação sem spec aprovada. Hierarquia: **PRD → PROJECT → Sprint → Feature `F00XX` → Fatia `F00XX.N` → RDPI**. O planejamento macro alimenta a execução por fatias pequenas e auditáveis.
+  <p>
+    <strong>🇬🇧 English</strong> · <a href="./README-PT.md">🇧🇷 Português</a>
+  </p>
+</div>
 
 ---
 
-# MGSX Workflow-AI (English)
+A **Claude Code plugin** that installs and runs a complete, professional engineering workflow in any project: a **product layer** (PRD → PROJECT), **Spec-Driven Development** with vertical slices, the **RDPI** cycle, and a team of review/audit subagents — all from a single command.
 
-> Turn **any** project — new or existing — into an AI-assisted engineering harness with **one command**. Product layer (PRD → PROJECT), Spec-Driven Development with vertical slices, the RDPI cycle, plus review/audit skills and agents — shipped as a **Claude Code plugin**.
+> **Why?** Skipping documentation and prompting your agent straight into code feels magical for 20 minutes — then the context window fills with shallow commands and quality collapses. This workflow front-loads the thinking (PRD → sprints → specs) so implementation becomes small, auditable, and almost boring. The boring part is the point.
 
-A **per-AI monorepo**: each AI tool gets its own plugin subfolder. Today there is one plugin: `mgsx-workflow-ai` under [`claude-code/`](claude-code/).
+## 📑 Table of Contents
 
-## Install (Claude Code)
+- [⚡ Quick start](#-quick-start)
+- [🤔 What you get](#-what-you-get)
+- [🧭 How it works](#-how-it-works)
+- [🧩 Components](#-components)
+- [🔁 The day-to-day flow](#-the-day-to-day-flow)
+- [📦 Repository layout](#-repository-layout)
+- [🔄 Updating](#-updating)
+- [📄 License](#-license)
+
+## ⚡ Quick start
 
 ```text
-/plugin marketplace add mgsx/mgsx-workflow-ai
+# 1) once per machine — add the marketplace and install the plugin
+/plugin marketplace add michelgomessilva/mgsx-workflow-ai
 /plugin install mgsx-workflow-ai@mgsx-workflow-ai
 
+# 2) in any project (an empty folder or an existing repo)
 cd my-project && claude
 /mgsx-workflow-ai:setup
 ```
 
-`/mgsx-workflow-ai:setup` runs **in phases with checkpoints**: detects the stack, **copies** the ready-made assets, and **generates** only the stack-specific files. See [`claude-code/README.md`](claude-code/README.md).
+That's it. `/mgsx-workflow-ai:setup` runs **in phases with checkpoints** — it detects your stack, **copies** the ready-made assets, and **generates** only the stack-specific files. You review and confirm between phases.
 
-## License
+## 🤔 What you get
 
-MIT — see [LICENSE](LICENSE).
+| | |
+|---|---|
+| 🧠 **Product layer** | `/new-prd` (a business document: problem, goals, scope, epics, user stories) and `/new-project` (breaks an epic into **sprints** with acceptance criteria — including the **sad paths** the AI usually forgets). |
+| 🧱 **Spec-Driven Development** | Parent feature `F00XX` → vertical slices `F00XX.N` → **1 PR ≤ ~400 lines**. No implementation without an approved spec. |
+| 🔬 **RDPI cycle** | **R**esearch → **D**esign → **P**lan → **I**mplement, with `/clear` between phases to keep context clean. |
+| 🤖 **9 skills + 8 agents** | RDPI skills plus a senior implementer, a code reviewer, an architecture advisor, read-only security auditors, an integration-test engineer and a docs writer. |
+| ⚙️ **Hybrid setup** | Reusable assets ship ready; only the stack-specific pieces (`CLAUDE.md`, settings, technical context) are generated per project. |
+
+## 🧭 How it works
+
+```
+PRD  (business — what & why)
+ └─ PROJECT  (technical — broken into sprints)
+     └─ Sprint  (deliverable + acceptance criteria incl. sad paths)
+         └─ Feature F00XX  (parent spec)
+             └─ Slice F00XX.N  →  RDPI  →  one small PR
+```
+
+The macro layer only **plans**; execution stays in the small, auditable vertical-slice loop. Each sprint is just a set of features that flow through the existing RDPI cycle and review/audit agents.
+
+## 🧩 Components
+
+The plugin lives under [`claude-code/`](claude-code/):
+
+- **Command** — `/mgsx-workflow-ai:setup` (the bootstrap orchestrator).
+- **Skills** — `new-prd`, `new-project`, `new-feature-spec`, `new-feature-slice`, `research-slice`, `design-slice`, `plan-slice`, `new-hotfix-spec`, `deliver-slice`.
+- **Agents** — `senior-implementer`, `code-reviewer`, `architecture-advisor`, `tenant-isolation-auditor`, `injection-reviewer`, `secret-scanner`, `integration-test-engineer`, `docs-writer`.
+- **Resources** — templates (PRD, PROJECT, feature, slice, research), base docs, settings skeletons, and the full `00–15` prompt library (PT/EN).
+
+See [`claude-code/README.md`](claude-code/README.md) for the full plugin reference.
+
+## 🔁 The day-to-day flow
+
+```text
+/new-prd                     # business doc — created/updated once per product, evolves over time
+/new-project EP01            # break an epic into sprints (acceptance criteria incl. sad paths)
+/new-feature-spec            # F00XX parent spec → vertical slices F00XX.N
+  → /research-slice → /clear → /design-slice → /clear → /plan-slice → implement (RDPI)
+```
+
+**Golden rules:** 1 slice = 1 PR ≤ ~400 lines · at least 2 slices per feature · `/clear` between Research / Design / Plan · never use `Co-Authored-By` in commits.
+
+## 📦 Repository layout
+
+```
+mgsx-workflow-ai/                 # this repo — a per-AI monorepo
+├── README.md  ·  README-PT.md  ·  LICENSE
+├── assets/                       # logo + banner
+├── .claude-plugin/marketplace.json
+└── claude-code/                  # the Claude Code plugin (future AIs = new folders)
+    ├── .claude-plugin/plugin.json
+    ├── commands/  ·  skills/  ·  agents/  ·  resources/
+    └── README.md
+```
+
+## 🔄 Updating
+
+Updates are released by bumping the `version` in the marketplace. To upgrade:
+
+```text
+/plugin update mgsx-workflow-ai
+```
+
+## 📄 License
+
+[MIT](LICENSE) © MGSX
+
+<div align="center"><sub>Built for <a href="https://www.claude.com/product/claude-code">Claude Code</a> · inspired by the Spec-Driven Development tradition.</sub></div>

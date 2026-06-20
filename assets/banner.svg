@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="MGSX Workflow-AI">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="0.5" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6366F1" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="320" rx="28" fill="url(#bg)"/>
+  <circle cx="180" cy="60" r="220" fill="url(#glow)"/>
+  <circle cx="1080" cy="300" r="240" fill="url(#glow2)"/>
+
+  <!-- Mark: funnel (PRD -> PROJECT -> SLICE) + slices row -->
+  <g transform="translate(96,70)">
+    <rect x="0"  y="0"   width="180" height="34" rx="9" fill="url(#accent)"/>
+    <rect x="26" y="48"  width="128" height="34" rx="9" fill="url(#accent)" opacity="0.85"/>
+    <rect x="50" y="96"  width="80"  height="34" rx="9" fill="url(#accent)" opacity="0.7"/>
+    <g fill="#E2E8F0">
+      <rect x="6"  y="150" width="22" height="22" rx="5"/>
+      <rect x="36" y="150" width="22" height="22" rx="5"/>
+      <rect x="66" y="150" width="22" height="22" rx="5"/>
+      <rect x="96" y="150" width="22" height="22" rx="5"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <g font-family="'Segoe UI', SF Pro Display, Helvetica, Arial, sans-serif">
+    <text x="324" y="158" font-size="66" font-weight="800" letter-spacing="-1">
+      <tspan fill="#F8FAFC">MGSX </tspan><tspan fill="url(#accent)">Workflow-AI</tspan>
+    </text>
+    <text x="326" y="206" font-size="26" font-weight="500" fill="#94A3B8">Turn any repo into a Spec-Driven Development harness — one command.</text>
+    <text x="326" y="250" font-size="19" font-weight="600" letter-spacing="2" fill="#64748B">PRD → PROJECT → FEATURE → SLICE → RDPI</text>
+  </g>
+</svg>
