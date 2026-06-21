@@ -41,7 +41,7 @@
     <text x="324" y="158" font-size="66" font-weight="800" letter-spacing="-1">
       <tspan fill="#F8FAFC">MGSX </tspan><tspan fill="url(#accent)">Workflow-AI</tspan>
     </text>
-    <text x="326" y="206" font-size="26" font-weight="500" fill="#94A3B8">Turn any repo into a Spec-Driven Development harness — one command.</text>
+    <text x="326" y="206" font-size="26" font-weight="500" fill="#94A3B8">Turn any repo into a Spec-Driven Development harness in one command.</text>
     <text x="326" y="250" font-size="19" font-weight="600" letter-spacing="2" fill="#64748B">PRD → PROJECT → FEATURE → SLICE → RDPI</text>
   </g>
 </svg>
