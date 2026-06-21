@@ -42,9 +42,44 @@
 | Server / Plugin             | Purpose                                                            |
 | --------------------------- | ------------------------------------------------------------------ |
 | {database MCP}              | Inspect schema, run `EXPLAIN`, validate queries (Recipe D).        |
-| `superpowers`               | `superpowers:writing-plans` powers `plan-slice`.                   |
+| `superpowers`               | Process skills: `writing-plans` (powers `plan-slice`), `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`. |
+| `context7` (docs MCP)       | Live, language-agnostic docs for external libraries/frameworks — fetch the **real** API instead of guessing. |
+| `<language>-lsp`            | Semantic navigation: go-to-def, find-references, rename (e.g. `typescript-lsp`, `pyright-lsp`, `csharp-lsp`). |
+| `frontend-design`           | High-quality UI when the slice touches the front-end.             |
+| `code-review`               | Structured PR review (complements the `code-reviewer` agent).      |
+| `context-mode`              | Keep large tool output out of the window (`ctx_execute`/`ctx_search`). |
+| `microsoft-docs`            | Live Microsoft/Azure/.NET docs (only on Microsoft stacks).         |
 
-> Replace with the servers in `.mcp.json` and the plugins actually installed.
+> Replace with the servers in `.mcp.json` and the plugins actually installed. The
+> `/mgsx-workflow-ai:setup` command writes a concrete **Implementation tool map** for
+> your detected stack into `CLAUDE.md`.
+
+---
+
+## Part 1.5 — Implementation Playbook (which tool, when)
+
+The hardest part of the cycle to get right is the **Implement (I)** phase. Coding
+is not just "write the code" — it is knowing *which tool to reach for* in each
+situation. This table is **language-agnostic**; the placeholders (`<language>-lsp`,
+`{docs MCP}`) are filled in for your stack by `/mgsx-workflow-ai:setup` inside
+`CLAUDE.md`. Every tool is optional — a fallback is always noted.
+
+| Situation while coding | Reach for | Fallback |
+|---|---|---|
+| Need the real API/signature of an external library or framework | `{docs MCP}` (e.g. `context7`); platform docs plugin (e.g. `microsoft-docs`). **Never hallucinate an API.** | read the dependency's own source/types |
+| Don't know where something lives in the codebase | dispatch an `Explore` subagent (read-only search) | `Grep`/`Glob` by hand |
+| Semantic navigation / find-references / safe rename | `<language>-lsp` | `Grep` for the symbol |
+| Write failing test → minimum code → refactor | `superpowers:test-driven-development` | Red/Green/Refactor by hand (see `senior-implementer`) |
+| A test fails and the cause isn't obvious | `superpowers:systematic-debugging` (hypothesis → instrument → isolate) | methodical debugging — **don't guess-patch** |
+| Building or changing UI | `frontend-design` | mirror existing UI conventions |
+| About to say "done" | `superpowers:verification-before-completion` — run the suite **and** exercise the feature | run tests + the app yourself |
+| Large tool output (logs, test runs, greps) bloating context | `context-mode` (`ctx_execute`/`ctx_search`) | summarize output manually |
+| Review your own diff before the PR | `code-reviewer` agent + auditors; `superpowers:requesting-code-review` | manual diff review |
+| Blocked: ambiguous spec / missing decision | **STOP & report** (the implementer rule); ask `architecture-advisor` for 2–3 options | escalate to a human |
+
+> Rule of thumb: **never invent an API and never guess-patch a failing test.** Fetch
+> the real docs, or debug systematically. Explicit user / `CLAUDE.md` instructions
+> always take precedence over this table.
 
 ---
 
@@ -65,7 +100,10 @@
 9. Create branch `feature/F00XX.N-{slug}` from `develop`.
 10. `/plan-slice` → file-by-file TDD plan (via `superpowers:writing-plans`).
 11. Dispatch `senior-implementer` to execute the plan TDD (Red → Green → Refactor),
-    committing per phase.
+    committing per phase. During coding, reach for the right tool per the
+    [Implementation Playbook](#part-15--implementation-playbook-which-tool-when)
+    (real docs over guessed APIs; systematic-debugging over guess-patching;
+    verification-before-completion before "done").
 12. Dispatch auditors in parallel: `secret-scanner`, the injection reviewer, and the
     security-invariant auditor (e.g. `tenant-isolation-auditor`).
 13. Dispatch `code-reviewer` on the branch diff → expect **APPROVED**.

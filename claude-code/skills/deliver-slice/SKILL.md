@@ -28,7 +28,7 @@ This orchestrator chains the whole RDPI delivery for a single slice, dispatching
 2. **Run `research-slice` then `design-slice`** (as isolated subagents). If a `docs/` documentation tree exists and the design takes an architectural decision, record an ADR via `/new-adr` before the checkpoint.
    → **CHECKPOINT 2:** present the design decisions + the TEST LIST (unit and integration) + the ADR (if any) and STOP for approval.
 3. **Run `plan-slice`** and create the branch `feature/F00XX.N-{slug}` from `develop`.
-4. **Dispatch `senior-implementer`** to implement following TDD (Red/Green/Refactor), covering the UNIT tests from the list. Explicitly verify the unit tests are green before proceeding.
+4. **Dispatch `senior-implementer`** to implement following TDD (Red/Green/Refactor), covering the UNIT tests from the list. During coding it follows the Implementation Playbook (real docs over guessed APIs; `superpowers:systematic-debugging` when a test fails for a non-obvious reason instead of guess-patching). Before this step is considered done, require `superpowers:verification-before-completion` (or an equivalent real run). Explicitly verify the unit tests are green before proceeding.
 5. **Dispatch `integration-test-engineer`** to write and run the INTEGRATION / E2E tests. Verify they pass.
 6. **Dispatch in parallel** the defensive auditors (secret / injection / security-invariant) ‖ the `code-reviewer`. Collect the verdict.
    → If any test fails or the verdict is BLOCKED: STOP, report the actionable items, and do NOT open the PR.

@@ -73,6 +73,24 @@ Every slice must satisfy these. They are the baseline, not aspirations.
 
 ---
 
+## Implementation Standards & Tooling
+
+Implementation (the **I** in RDPI) is tool-driven, not just typing code. Two rules
+are non-negotiable during coding:
+
+- **Never hallucinate an external API** — fetch the real signature from a live-docs
+  source (e.g. the `context7` MCP) or the dependency's own source.
+- **Never guess-patch a failing test** — debug systematically (form a hypothesis,
+  instrument, isolate) before changing code, and run real verification before
+  declaring anything done.
+
+Which skill/plugin/MCP to reach for in each situation is in the
+**Implementation Playbook** in [`claude-code-guide.md`](./claude-code-guide.md). The
+`/mgsx-workflow-ai:setup` command writes a concrete version of that map (for this
+project's stack) into `CLAUDE.md`.
+
+---
+
 ## Mandatory Security Standards
 
 Non-negotiable on every slice (also enforced by the slice security checklist):

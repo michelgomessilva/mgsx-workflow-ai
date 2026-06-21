@@ -24,7 +24,7 @@ The Plan phase turns the approved design into an **executable, file-by-file TDD 
 1. **Read the slice sub-spec** `docs/features/F00XX.N-{slug}.md` (§3 Design, §4 Tests, §2 Critical Files).
 2. **Create the branch** `feature/F00XX.N-{slug}` **from `develop`** (fetch/update develop first). Slug in English kebab-case.
 3. **Invoke `superpowers:writing-plans`** to produce the structured implementation plan, grounded in this slice's design and test list.
-4. **Write the file-by-file TDD plan** into §5 Plan of the slice sub-spec: ordered steps, each naming the exact file(s) to create/modify, the test(s) that drive it (from §4), and the detected test/build commands to verify each step. Keep it within the one-slice / one-PR ≤ ~400-line discipline.
+4. **Write the file-by-file TDD plan** into §5 Plan of the slice sub-spec: ordered steps, each naming the exact file(s) to create/modify, the test(s) that drive it (from §4), and the detected test/build commands to verify each step. **Annotate the expected tool per step** when relevant (per the Implementation Playbook): e.g. "needs library X API → `context7`", "UI step → `frontend-design`", "semantic navigation → `<language>-lsp`", "tricky behavior → expect `systematic-debugging`". Keep it within the one-slice / one-PR ≤ ~400-line discipline.
 5. **Point to the next step.** Instruct the user to implement following TDD (Red/Green/Refactor) — directly or via `senior-implementer` / `/deliver-slice`.
 
 ## Conventions

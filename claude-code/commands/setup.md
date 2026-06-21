@@ -35,14 +35,25 @@ Copy from `${CLAUDE_PLUGIN_ROOT}` into this project (create folders as needed). 
 
 ## Phase B — Stack-specific generation (dispatch heavy steps to subagents with clean context)
 Follow the methodology in `resources/prompts/$LANG/` for each item (use `01`, `04`, `05`, `07`). Generate, do not copy:
-1. **`CLAUDE.md`** at the repo root — commands (real test/build/format), architecture, patterns, quality bar, an SDD section, and a "Workflow-AI" section pointing to `/mgsx-workflow-ai:setup`, the skills and the product layer (follow prompt `01`).
+1. **`CLAUDE.md`** at the repo root — commands (real test/build/format), architecture, patterns, quality bar, an SDD section, and a "Workflow-AI" section pointing to `/mgsx-workflow-ai:setup`, the skills and the product layer (follow prompt `01`). Also add an **"Implementation tool map"** subsection that makes the guide's Implementation Playbook concrete for THIS stack — fill the placeholders with the detected reality:
+   - real library/API docs → the docs MCP you wire (default `context7`; add `microsoft-docs` on Microsoft stacks);
+   - semantic navigation → the language LSP (e.g. `typescript-lsp` / `pyright-lsp` / `csharp-lsp`), noting if not installed;
+   - failing-test debugging → `superpowers:systematic-debugging`;
+   - "done" gate → `superpowers:verification-before-completion` + the real run command (test suite + how to launch the app/feature);
+   - UI work → `frontend-design` (only if the project has a front-end).
+   Keep the fallbacks. State that explicit user/CLAUDE.md instructions take precedence.
 2. **Tune `.claude/settings.json` / `settings.local.json` / `.pre-commit-config.yaml`** — replace every `<PLACEHOLDER>` with the detected stack's real commands; add `ask` rules for the sensitive files that actually exist; ensure `.gitignore` keeps `settings.local.json` machine-local (follow prompt `04`).
 3. **Fill the technical-context placeholder** in `docs/spec-driven-development.md` with the detected architecture/persistence/auth (follow prompt `07`). Adapt the engineering/security standards to the language.
-4. **`.mcp.json`** — create with `{ "mcpServers": {} }` (or wire the obvious read-only DB/docs servers if clearly applicable; follow prompt `05`). Do not invent credentials.
+4. **`.mcp.json`** — create with `{ "mcpServers": {} }`, and by default propose adding **`context7`** (language-agnostic live docs) so the implementation phase can fetch real APIs instead of guessing; wire the obvious read-only DB server if clearly applicable (follow prompt `05`). Do not invent credentials.
 **Checkpoint** — show diffs/summaries; wait.
 
 ## Phase C — External plugins + verification
-1. Recommend the companion market plugins and the exact install commands: `superpowers` and `context-mode` (note they are installed once, globally, and are optional but recommended).
+1. Recommend the companion market plugins and the exact install commands (installed once, globally; optional but recommended):
+   - `superpowers` and `context-mode` (always);
+   - the **language LSP** for the detected stack (e.g. `typescript-lsp`, `pyright-lsp`, `csharp-lsp`) for semantic navigation;
+   - `frontend-design` if the project has a UI;
+   - `code-review` to complement the `code-reviewer` agent.
+   These power the Implementation Playbook — call out which ones matter most for this stack.
 2. Run the **parity checklist**: `.claude/skills` present, `.claude/agents` present, templates + SDD doc + guide present, `docs/product/`, settings tuned, `CLAUDE.md` written. Report PASS/MISSING per item.
 3. Tell the user the next step: the product cycle — `/new-prd` → `/new-project` → then `/new-feature-spec` and the RDPI flow (research → design → plan → implement). Reference `docs/claude-code-guide.md`.
 
